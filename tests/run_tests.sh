@@ -47,6 +47,33 @@ echo "== 5. Skills mention pilot safety =="
 grep -q "pilot" .cursor/skills/ux-phases/SKILL.md && ok "phases pilot" || no "phases pilot"
 grep -q "impeccable" .cursor/skills/ux-impeccable/SKILL.md && ok "impeccable skill" || no "impeccable skill"
 
+echo "== 6. UX pass Teams notify (offline) =="
+have "scripts/ux_pass_notify.py"
+have "scripts/test_pass_notify.sh"
+have "projects/_template/jira.env.example"
+grep -q "UX_FACTORY_TEAMS_WEBHOOK_URL" projects/_template/jira.env.example && ok "template webhook" || no "template webhook"
+grep -q "ux_pass_notify" .cursor/skills/ux-loop/SKILL.md && ok "ux-loop documents notify" || no "ux-loop documents notify"
+python3 - <<'PY' && ok "ux_pass_notify builders + webhook checks" || no "ux_pass_notify unit checks"
+import importlib.util, sys
+spec = importlib.util.spec_from_file_location("ux_pass_notify", "scripts/ux_pass_notify.py")
+mod = importlib.util.module_from_spec(spec)
+sys.modules["ux_pass_notify"] = mod
+spec.loader.exec_module(mod)
+s = mod.build_pass_notify_summary(
+    slug="demo", ticket="ABC-1", branch="feat/x", surfaces="components/A.tsx", mode="hephaestus-kick"
+)
+assert "UX pass started" in s and "ABC-1" in s and "on-demand" in s, s
+body = mod.build_pass_notify_webhook_body(
+    slug="demo", ticket="ABC-1", branch="feat/x", surfaces="components/A.tsx", mode="charter"
+)
+titles = {f["title"] for f in body["attachments"][0]["content"]["body"][1]["facts"]}
+assert "Next run" in titles and "Mode" in titles, titles
+assert mod.check_webhook_url("")["problem"] == "not_configured"
+assert mod.check_webhook_url("http://x")["problem"] == "not_https"
+out = mod.post_ux_pass_notify(slug="demo", ticket="T", webhook_url="")
+assert out["reason"] == "not_configured" and mod.should_report_outcome(out) is False
+PY
+
 echo
 echo "Result: $PASS passed, $FAIL failed"
 [[ "$FAIL" -eq 0 ]]

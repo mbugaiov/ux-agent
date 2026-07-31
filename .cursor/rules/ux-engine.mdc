@@ -16,5 +16,10 @@ alwaysApply: true
 - **Dual delivery** — shared engine changes (skills, scripts, rules, `_template`) ship via
   **GitHub PR** on this repo; product UI stays on the **app feature branch** Bitbucket MR.
   If both change in one session, merge both before calling done (`PORTABILITY.md`).
+- **PR/pipeline to completion** — every engine PR you open: wait for CI + review gate →
+  fix failures → green → merge. Do not leave open PRs after “created” without follow-through.
+- **Teams pass notify (optional):** on UX pass start, `scripts/ux_pass_notify.py` posts an
+  Adaptive Card when `UX_FACTORY_TEAMS_WEBHOOK_URL` is set — same Power Automate URL as
+  Hephaestus for the same channel. Unset = quiet; failures print `UX_PASS_NOTIFY_FAILED`.
 - Read skill `ux-impeccable` before running detectors or Impeccable commands.
 - After engine changes: `bash tests/run_tests.sh`.
