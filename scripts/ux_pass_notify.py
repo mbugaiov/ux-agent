@@ -7,9 +7,9 @@ Webhook (optional; same Power Automate channel as Hephaestus when URLs match):
   DEV_FACTORY_TEAMS_WEBHOOK_URL (shared fallback)
 
 Usage:
-  python3 scripts/ux_pass_notify.py --slug lrm --ticket RQ-1 --branch feat/x \\
+  python3 scripts/ux_pass_notify.py --slug <slug> --ticket ABC-1 --branch feat/x \\
     --surfaces 'components/Foo.tsx' --mode hephaestus-kick
-  python3 scripts/ux_pass_notify.py --slug lrm --smoke
+  python3 scripts/ux_pass_notify.py --slug <slug> --smoke
 """
 from __future__ import annotations
 
