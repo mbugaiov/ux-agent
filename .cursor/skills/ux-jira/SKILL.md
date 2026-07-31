@@ -11,7 +11,7 @@ unless the user asks to enable tracking.
 ## Epic
 
 Use **`jira.epic_key`** from the live project config — the **same product epic** as
-Hephaestus (LRM: RQ-1579). **Do not create a separate UX epic.**
+Hephaestus. **Do not create a separate UX epic.**
 
 Create **child Tasks** under that epic for Athena polish / findings / Hephaestus kicks.
 
@@ -23,7 +23,8 @@ Create **child Tasks** under that epic for Athena polish / findings / Hephaestus
 | `impl-ux` + `impl-dev` | Athena found bug → Hephaestus ships | **Yes** — factory `pickup_label` |
 | `impl-dev` only | Normal product work | Yes (not Athena-owned) |
 
-Also apply `jira.default_labels` from project.yaml (e.g. `lrm`, `athena`, `ux-agent`).
+Also apply `jira.default_labels` from project.yaml (product slug labels live only there —
+never hardcode them in engine skills).
 
 ## When to file
 
@@ -47,4 +48,4 @@ Prefer app grooming (`groomed_jira_ticket.py` / jira-ticket-grooming skill). Inc
 - Create a second / UX-only epic
 - Transition product tickets to **Done**
 - Deploy or instruct deploy to STG from pilot branch
-- Put epic keys into **tracked engine** files (live `projects/<slug>/project.yaml` is OK)
+- Put epic keys or product slugs into **tracked engine** files (live `projects/<slug>/project.yaml` is OK)
