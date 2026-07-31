@@ -38,6 +38,9 @@ impeccable:
 
 jira:
   enabled: false
+  # Set epic_key in the live projects/<slug>/project.yaml (not in engine docs).
+  # epic_key: <ATHENA-UX-EPIC>
+  # hephaestus_handoff_label: impl-dev
   default_labels:
     - ux-agent
     - impl-ux

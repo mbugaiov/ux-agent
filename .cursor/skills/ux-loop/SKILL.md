@@ -1,27 +1,33 @@
 ---
 name: ux-loop
-description: Recurring UX factory tick — detect ledger gaps, optional critique slice. Not every tick redesigns. Use when user arms a UX loop or AGENT_LOOP_WAKE_*ux*.
+description: On-demand Athena pickup — either Hephaestus-kicked on a feature branch, or human charter. No standing daily redesign loop.
 ---
 
-# UX loop
+# UX loop (on-demand)
 
 ## Policy
 
-- Tick = **detect + ledger update**, not full redesign.
-- Redesign / polish only when user or `impl-ux` charter says so.
-- Prefer long intervals (e.g. daily) — UI detection is not a 5-minute drain.
+- **No permanent / daily Athena loop.**
+- Starts when: **Hephaestus wakes a UX Task subagent** (preferred for L5 feature work),
+  human asks, or an `impl-ux` charter ticket exists.
 
-## Tick steps
+## Mode A — Hephaestus kick (same feature branch)
 
-1. Read `projects/<slug>/project-memory.md` Design ledger.
-2. Run `bash scripts/ux_detect.sh <slug>` (default scan paths from `project.yaml`).
-3. If new high-severity findings: file/update Jira via `ux-jira`; do **not** auto-merge.
-4. Update ledger; stop.
+Triggered by Hephaestus skill `dev-ux-subagent` after feature implement:
 
-## Arm (Cursor)
+1. Stay on the **current app feature branch** (do not create `feat/ux-*` or checkout pilot).
+2. Read ticket surfaces + `DESIGN.md` / `lib/ui.ts`.
+3. Prefer `audit` / `polish` / `harden` / `critique`.
+4. Commit UX fixes on this branch; return file list to Hephaestus.
+5. Hephaestus continues gate → MR.
 
-```
-/loop 86400 AGENT_LOOP_WAKE_<slug>ux
-```
+## Mode B — Charter / human (optional pilot)
 
-Or one-shot: tell the agent to run one UX tick for `<slug>`.
+1. Read `projects/<slug>/project.yaml` + `project-memory.md`.
+2. Work on `app.pilot_branch` only when the user explicitly wants a UX pilot.
+3. Labels / handoff via `ux-jira` under the **product** epic (`jira.epic_key`).
+
+## Optional backlog probe
+
+JQL non-empty `impl-ux` / `needs-ux-pass` in To Do → one-shot wake; else idle.
+**Do not** schedule fixed-interval redesign.

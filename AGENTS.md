@@ -57,13 +57,20 @@ MRs when code changes are required.
 
 ## Engine delivery (GitHub)
 
+**Any shared / engine change must ship via PR** — skills, rules, scripts, tests, `_template`,
+engine markdown. Local-only edits of engine files are incomplete.
+
 ```
 git fetch origin && git switch -c <type>/<topic> origin/main
 bash tests/run_tests.sh && bash scripts/pre_merge_check.sh
 git push -u origin HEAD && gh pr create …
 ```
 
-**Forbidden:** push to `main`, force-push to shared branches.
+**Product UI** stays in the app repo feature branch (Bitbucket MR). See **`PORTABILITY.md`**
+dual delivery.
+
+**Forbidden:** push to `main`, force-push to shared branches, leaving common Athena changes
+uncommitted or only in a product feature branch.
 
 ## Layout
 
