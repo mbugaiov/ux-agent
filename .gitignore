@@ -1,0 +1,25 @@
+node_modules/
+.DS_Store
+*.log
+review.md
+
+# Live projects — only _template is tracked
+projects/*
+!projects/_template/
+!projects/_template/**
+
+# Secrets anywhere
+**/.secrets/**
+!**/.secrets/*.example
+!**/.secrets/*.example.*
+
+# Impeccable ephemeral (if ever run from engine root)
+.impeccable/config.local.json
+.impeccable/hook.cache.json
+.impeccable/hook.pending.json
+.impeccable/*.png
+.impeccable/live/server.json
+.impeccable/live/sessions/
+.impeccable/live/previews/
+.impeccable/live/annotations/
+.impeccable/live/cache/

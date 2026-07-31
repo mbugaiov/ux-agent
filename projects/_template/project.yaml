@@ -1,0 +1,46 @@
+# UX project — created by scripts/new_project.sh
+# NEVER put real credentials here.
+
+name: "<Project Name>"
+slug: "<slug>"
+base_url: https://staging.example.com
+
+environment:
+  type: staging
+  notes: >
+    Prefer local npm run dev for visual preview. STG reflects main only.
+
+app:
+  # Absolute or relative path to the product git root
+  repo_path: ../../path/to/app
+  default_branch: main
+  # All UX redesign commits go here until reviewed
+  pilot_branch: feat/ux-impeccable-pilot
+  gate_command: npm run gate:mr
+
+impeccable:
+  enabled: true
+  # surfaces relative to app repo_path
+  default_scan_paths:
+    - components/
+    - app/
+  # Prefer these Impeccable commands on mature product UIs
+  preferred_commands:
+    - audit
+    - polish
+    - harden
+    - critique
+  # Avoid on established dashboards unless explicitly requested
+  avoid_commands:
+    - craft
+    - overdrive
+    - delight
+
+jira:
+  enabled: false
+  default_labels:
+    - ux-agent
+    - impl-ux
+
+report:
+  app_name: "<App>"

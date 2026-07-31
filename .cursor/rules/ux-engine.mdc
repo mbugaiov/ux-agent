@@ -1,0 +1,17 @@
+---
+description: UX Agent engine — always-on constraints when working under ux-agent/
+globs: "{ux-agent/**,lib/**,scripts/**,projects/**,templates/**,tests/**,.cursor/**}"
+alwaysApply: true
+---
+
+# UX Agent engine constraints
+
+- **Pilot branch only** for app visual changes — never push UX redesigns straight to `main`.
+- **STG = main** — do not assume a pilot branch is staged.
+- **Impeccable** is the design spine; prefer `audit` / `polish` / `harden` / `critique`.
+- **Engine purity** — no product slugs, epic keys, or `/Users/...` paths in tracked engine files.
+- **Live projects** stay out of git — only `projects/_template/`.
+- **Hand off code fixes** to `dev-agent` (`impl-dev`) when implementation is non-trivial.
+- **Never Done** on product Jira tickets from this engine.
+- Read skill `ux-impeccable` before running detectors or Impeccable commands.
+- After engine changes: `bash tests/run_tests.sh`.
