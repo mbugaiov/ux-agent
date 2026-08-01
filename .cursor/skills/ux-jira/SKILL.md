@@ -20,18 +20,21 @@ Create **child Tasks** under that epic for Athena polish / findings / Hephaestus
 | Labels | Who owns | Hephaestus factory? |
 |--------|----------|---------------------|
 | `impl-ux` (+ product labels) | Athena | **No** — charter / polish track only |
+| `ux-charter-first` + `impl-dev` | Design-first redesign | **Yes** — charter kick **before** implement until `UX_CHARTER_READY` |
 | `impl-ux` + `impl-dev` | Athena found bug → Hephaestus ships | **Yes** — factory `pickup_label` |
 | `impl-dev` only | Normal product work | Yes (not Athena-owned) |
+| `needs-ux-pass` (+ `impl-dev`) | Polish after implement | Yes — Mode A kick after code |
 
 Also apply `jira.default_labels` from project.yaml (product slug labels live only there —
 never hardcode them in engine skills).
 
 ## When to file
 
-1. **Feature ticket (preferred for L5):** grooming adds **`needs-ux-pass`** (+ `impl-dev`) on the **same** product ticket under `jira.epic_key`. Hephaestus wakes Athena as a Task subagent on the feature branch (`dev-ux-subagent`).
-2. **Charter-only UX** (no feature behaviour): child under epic with **`impl-ux`**, optional pilot branch.
-3. **Athena found a code defect Hephaestus should ship later:** add **`impl-dev`**, leave **To Do**.
-4. **Athena already implemented on pilot and user says merge** → **`impl-ux`**, MR → Validate/Testing.
+1. **Feature ticket (preferred for L5):** grooming adds **`needs-ux-pass`** (+ `impl-dev`) on the **same** product ticket under `jira.epic_key`. Hephaestus wakes Athena Mode A after implement (`dev-ux-subagent`).
+2. **Full redesign (design-first):** same ticket with **`ux-charter-first`** + `impl-dev` + usually `needs-ux-pass`. Hephaestus wakes Athena Mode B **before** implement; Athena posts **`UX_CHARTER_READY`**; then implement → Mode A polish.
+3. **Charter-only UX** (no `impl-dev` yet): child under epic with **`impl-ux`**, optional pilot branch; add `impl-dev` after charter when ready to ship.
+4. **Athena found a code defect Hephaestus should ship later:** add **`impl-dev`**, leave **To Do**.
+5. **Athena already implemented on pilot and user says merge** → **`impl-ux`**, MR → Validate/Testing.
 
 ## Filing checklist
 
