@@ -66,8 +66,15 @@ assert "UX pass started" in s and "ABC-1" in s and "on-demand" in s, s
 body = mod.build_pass_notify_webhook_body(
     slug="demo", ticket="ABC-1", branch="feat/x", surfaces="components/A.tsx", mode="charter"
 )
+title_block = body["attachments"][0]["content"]["body"][0]
+assert "Athena" in title_block["text"], title_block
+assert title_block["color"] == "Good", title_block
 titles = {f["title"] for f in body["attachments"][0]["content"]["body"][1]["facts"]}
-assert "Next run" in titles and "Mode" in titles, titles
+assert "Agent" in titles and "Next run" in titles and "Mode" in titles, titles
+assert any(
+    f["title"] == "Agent" and "Athena" in f["value"]
+    for f in body["attachments"][0]["content"]["body"][1]["facts"]
+)
 assert mod.check_webhook_url("")["problem"] == "not_configured"
 assert mod.check_webhook_url("http://x")["problem"] == "not_https"
 out = mod.post_ux_pass_notify(slug="demo", ticket="T", webhook_url="")
