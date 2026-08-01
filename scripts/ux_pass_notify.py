@@ -107,6 +107,11 @@ def build_pass_notify_summary(
     )
 
 
+# Adaptive Card title colour for Athena / UX (distinct from Hephaestus/Argus).
+UX_PASS_CARD_COLOR = "Good"
+UX_PASS_AGENT_ID = "Athena / UX"
+
+
 def build_pass_notify_webhook_body(
     *,
     slug: str,
@@ -119,6 +124,7 @@ def build_pass_notify_webhook_body(
         slug=slug, ticket=ticket, branch=branch, surfaces=surfaces, mode=mode
     )
     facts = [
+        {"title": "Agent", "value": UX_PASS_AGENT_ID},
         {"title": "Project", "value": slug},
         {"title": "Ticket", "value": ticket or "(none)"},
         {"title": "Branch", "value": branch or "(unknown)"},
@@ -140,10 +146,10 @@ def build_pass_notify_webhook_body(
                     "body": [
                         {
                             "type": "TextBlock",
-                            "text": "UX pass started",
+                            "text": "Athena · UX pass started",
                             "weight": "Bolder",
                             "size": "Medium",
-                            "color": "Accent",
+                            "color": UX_PASS_CARD_COLOR,
                             "wrap": True,
                         },
                         {"type": "FactSet", "facts": facts, "spacing": "Medium"},

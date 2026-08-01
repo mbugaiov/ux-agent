@@ -8,7 +8,8 @@ MRs when code changes are required.
 
 > **Naming map:** Athena (brand) ≡ `ux-agent` repo ≡ factory `agent=ux`. Pantheon siblings:
 > Hephaestus (`dev-agent`), Argus (`qa-agent`), Themis (app CR). Internal paths keep the `ux-*`
-> prefix. Presentation: *Athena · UX*.
+> prefix. Presentation: *Athena · UX*. Teams Adaptive Cards use title colour **`Good`**
+> (Hephaestus=`Accent`, Argus=`Warning`) — keep the three colours distinct (RQ-1957).
 
 > **Design spine:** [Impeccable](https://github.com/pbakaus/impeccable) — skills, 23 commands,
 > 59 deterministic detectors. This engine **orchestrates** Impeccable; it does not fork the
