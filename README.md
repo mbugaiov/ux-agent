@@ -1,9 +1,11 @@
 # Athena
 
-**Athena** is the UX engine — this repository (`ux-agent`). An agent-driven **UI/UX factory**
-built on [Impeccable](https://github.com/pbakaus/impeccable): detect AI-slop and a11y/layout
-issues, critique product surfaces, and propose careful visual improvements on **feature
-branches** so staging stays stable until a reviewed MR merges to `main`.
+**Athena** is the UX engine — this repository (`ux-agent`). An agent-driven **UI/UX factory**:
+product thinking → visual direction → live browser review → UI/a11y critique →
+[Impeccable](https://github.com/pbakaus/impeccable) **last** for anti-slop polish.
+Work stays on **feature branches** so staging is stable until a reviewed MR merges to `main`.
+
+Canonical pipeline: **`docs/UX-PIPELINE.md`**.
 
 > **Naming:** Athena is the product name (*Athena · UX*). Folder `ux-agent/`, skills `ux-*`,
 > factory `agent=ux`.

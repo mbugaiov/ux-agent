@@ -1,15 +1,31 @@
 ---
 name: ux-phases
-description: Per-phase UX loop — context, detect, critique, propose on pilot branch, handoff to dev-agent. Use when executing an Athena UX engagement.
+description: Per-phase Athena engagement — architect, visual direction, browser review, UI rules, a11y, Impeccable last, handoff. Use when executing Mode A or Mode B.
 ---
 
 # UX phases
 
-1. **Context** — Read `project.yaml`, `project-memory.md`, app `DESIGN.md` / `PRODUCT.md`.
-2. **Scope** — Pick 1–2 surfaces; record in `run.md`.
-3. **Detect** — `bash scripts/ux_detect.sh <slug> [paths…]` → save JSON under the run folder.
-4. **Critique / audit** — Follow skill `ux-impeccable` (`/impeccable audit|critique|polish`).
-5. **Propose** — List concrete UI changes; prefer minimal diffs that preserve brand.
-6. **Implement (optional)** — Only on `pilot_branch`. Run app gate if code changes.
-7. **Handoff** — Jira (`impl-ux` / `impl-dev`) + screenshots; update `project-memory.md`.
-8. **Do not** merge to `main` or trigger STG from this phase without human approval.
+Canonical order (see `docs/UX-PIPELINE.md`):
+
+1. **Config** — `project.yaml`, `project-memory.md`, run folder via `ux-runs`.
+2. **Context** — App **`DESIGN.md`** (required). Optional `PRODUCT.md`, `docs/UX-CHARTER.md`
+   (ticket lock). Note failed/interim directions.
+3. **Architect** — skill `ux-architect` (Mode B required; Mode A if flow broken).
+4. **Visual direction** — skill `ux-visual-direction` (Mode B redesign / open DESIGN.md only).
+5. **Scope** — 1–2 surfaces; record in `run.md`.
+6. **Implement** — Hephaestus owns feature UI; Athena commits polish only on the shared
+   feature branch (or `pilot_branch` if human-only pilot).
+7. **Browser review** — skill `ux-browser-review` (four viewports → `runs/…/screenshots/`).
+8. **UI rules review** — skill `ux-ui-rules-review`.
+9. **A11y review** — skill `ux-a11y-review`.
+10. **Impeccable (last)** — skill `ux-impeccable`: detect + `audit|polish|harden|critique`.
+11. **Handoff** — tracker comment / return to Hephaestus; update `project-memory.md`.
+12. **Do not** merge to `main` or trigger STG without the normal factory path.
+
+## Detect helper
+
+```bash
+bash scripts/ux_detect.sh <slug> [paths…]
+```
+
+Save JSON under the run folder when Impeccable CLI is available.

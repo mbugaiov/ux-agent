@@ -2,10 +2,19 @@
 
 | Source | How used |
 |--------|----------|
-| [pbakaus/impeccable](https://github.com/pbakaus/impeccable) | Design skill, CLI `detect`, optional Cursor hooks |
-| Hephaestus (`dev-agent`) | **Wakes Athena as a Cursor Task subagent** on the **same feature branch**: (1) label **`ux-charter-first`** → Mode B charter **before** implement until Jira has `UX_CHARTER_READY`; (2) `needs-ux-pass` / `impl-ux` / UI surfaces/diff → Mode A polish **after** implement (`dev-ux-subagent`, `should_kick_ux.ts`). Hephaestus still owns MR → STG → handoff. |
+| [owl-listener/designer-skills](https://github.com/owl-listener/designer-skills) | Process inspiration → skill `ux-architect` (thin) |
+| [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | Visual direction lookup → `ux-visual-direction` (optional host `npx skills add`) |
+| [gsd-build/gsd-2](https://github.com/gsd-build/gsd-2) (userinterface-wiki) | Prioritized UI review → `ux-ui-rules-review` |
+| [Community-Access/accessibility-agents](https://github.com/Community-Access/accessibility-agents) | A11y critique → `ux-a11y-review` |
+| [pbakaus/impeccable](https://github.com/pbakaus/impeccable) | **Last** polish + CLI `detect` → `ux-impeccable` |
+| Playwright MCP (`user-playwright`) | Live screenshots → `ux-browser-review` |
+| App `DESIGN.md` | Product design language (styleseed-style consistency) |
+| Hephaestus (`dev-agent`) | Wakes Athena Task: Mode B before implement (`ux-charter-first`); Mode A after (`needs-ux-pass`) |
 | Argus (`qa-agent`) | Functional/a11y STG validation after merge |
 | App CR (Themis) | Product MR review in app repo |
+
+Do **not** install every upstream skill pack into the prompt at once — they contradict.
+Canonical order: **`docs/UX-PIPELINE.md`**.
 
 ## Where code goes
 
@@ -13,33 +22,30 @@
 |-------------|---------------|------|
 | Shared Athena (skills, scripts, rules, `_template`, engine docs) | **`ux-agent` engine** | **GitHub PR** — mandatory |
 | Live `projects/<slug>/` (yaml, memory, runs) | Local gitignored project | Note in engine PR if relevant; do not commit secrets |
-| App UI / DESIGN / components | **App feature branch** (Hephaestus or charter) | Bitbucket MR to app `main` |
+| App UI / DESIGN / components | **App feature branch** (Hephaestus or charter) | App MR/PR to `main` |
 
 If a session changes **both** engine and app, open **both** PRs/MRs and merge both before
 calling the work done (`PORTABILITY.md` dual delivery).
-
 
 ```
 # Default (polish-after-dev)
 Grooming (needs-ux-pass if UI)
   → Hephaestus picks impl-dev
   → feature branch + implement
-  → Task Athena Mode A polish on THAT branch
+  → Task Athena Mode A (browser → rules → a11y → Impeccable)
   → gate → MR → STG → Validate
 
 # Design-first (full redesign)
 Grooming (ux-charter-first + impl-dev + needs-ux-pass)
   → Hephaestus picks → branch + OpenSpec shell
-  → Task Athena Mode B charter → Jira UX_CHARTER_READY
+  → Task Athena Mode B (architect → visual → browser baseline → UX_CHARTER_READY)
   → Hephaestus implements from charter
-  → Task Athena Mode A polish
+  → Task Athena Mode A
   → gate → MR → STG → Validate
 ```
 
 - **No standing UX loop.** No separate UX epic (product epic only).
-- Prefer `audit` / `polish` / `harden` / `critique` for Mode A; Mode B delivers IA + freeze + `UX_CHARTER_READY`.
 - When kicked mid-ticket: **do not** switch to `pilot_branch`; stay on Hephaestus feature branch.
-- Human-only charter (no `impl-dev` yet) may still use `pilot_branch` from `project.yaml`.
 - Never STG-deploy from a UX-only pilot; never Done on product tickets from Athena.
 
 Impeccable license: Apache-2.0. Follow upstream install (`npx impeccable install`).

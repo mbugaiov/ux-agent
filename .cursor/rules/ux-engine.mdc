@@ -1,25 +1,25 @@
 ---
 description: UX Agent engine — always-on constraints when working under ux-agent/
-globs: "{ux-agent/**,lib/**,scripts/**,projects/**,templates/**,tests/**,.cursor/**}"
+globs: "{ux-agent/**,lib/**,scripts/**,projects/**,templates/**,tests/**,.cursor/**,docs/**}"
 alwaysApply: true
 ---
 
 # UX Agent engine constraints
 
-- **Pilot branch only** for app visual changes — never push UX redesigns straight to `main`.
+- **Pipeline order** — architect → DESIGN.md → visual direction → browser → UI rules → a11y →
+  **Impeccable last**. See `docs/UX-PIPELINE.md`.
+- **Pilot / feature branch only** for app visual changes — never push UX redesigns straight to `main`.
 - **STG = main** — do not assume a pilot branch is staged.
-- **Impeccable** is the design spine; prefer `audit` / `polish` / `harden` / `critique`.
+- **DESIGN.md required** in the app; failed directions must not be polished into “done”.
+- **Browser evidence** for first-viewport redesigns and Mode A polish (or documented skip).
 - **Engine purity** — no product slugs, epic keys, or `/Users/...` paths in tracked engine files.
 - **Live projects** stay out of git — only `projects/_template/`.
 - **Hand off code fixes** to `dev-agent` (`impl-dev`) when implementation is non-trivial.
-- **Never Done** on product Jira tickets from this engine.
-- **Dual delivery** — shared engine changes (skills, scripts, rules, `_template`) ship via
-  **GitHub PR** on this repo; product UI stays on the **app feature branch** Bitbucket MR.
-  If both change in one session, merge both before calling done (`PORTABILITY.md`).
-- **PR/pipeline to completion** — every engine PR you open: wait for CI + review gate →
-  fix failures → green → merge. Do not leave open PRs after “created” without follow-through.
-- **Teams pass notify (optional):** on UX pass start, `scripts/ux_pass_notify.py` posts an
-  Adaptive Card when `UX_FACTORY_TEAMS_WEBHOOK_URL` is set — same Power Automate URL as
-  Hephaestus for the same channel. Unset = quiet; failures print `UX_PASS_NOTIFY_FAILED`.
-- Read skill `ux-impeccable` before running detectors or Impeccable commands.
+- **Never Done** on product tracker tickets from this engine.
+- **Dual delivery** — shared engine changes ship via **GitHub PR** on this repo; product UI
+  stays on the **app feature branch**. If both change in one session, merge both before
+  calling done (`PORTABILITY.md`).
+- **PR/pipeline to completion** — every engine PR: wait for CI + review gate → green → merge.
+- **Teams pass notify (optional):** `scripts/ux_pass_notify.py` when webhook set.
+- Read the skill for the current phase before acting (`ux-architect`, `ux-browser-review`, …).
 - After engine changes: `bash tests/run_tests.sh`.
