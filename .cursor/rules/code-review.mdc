@@ -28,6 +28,15 @@ Read `AGENTS.md`, `PORTABILITY.md`, and `.cursor/rules/ux-engine.mdc`. Block on:
 
 Prioritise: **correctness · security · STG safety · missing tests · portability**, then maintainability.
 
+## Isolation sub-step (Themis engine)
+
+Keep this repo’s CR rules. **Also** enforce portable isolation on docs/skills/rules
+(not language style). When available: skill `themis-isolation` (mode=`engine`) or
+
+`bash "$THEMIS_AGENT_PATH/scripts/isolation_scan.sh" --mode engine --root "$PWD"`
+
+Fold isolation findings into **`## Blocking issues`**.
+
 ## Output (exactly these sections)
 
 - `## Summary` — 1–3 sentences
