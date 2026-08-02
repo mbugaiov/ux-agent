@@ -22,9 +22,12 @@ have SETUP.md
 have PORTABILITY.md
 have .cursor/rules/ux-engine.mdc
 have .cursor/rules/code-review.mdc
-for s in ux-runs ux-phases ux-loop ux-impeccable ux-jira ux-code-review; do
+for s in ux-runs ux-phases ux-loop ux-architect ux-visual-direction \
+  ux-browser-review ux-ui-rules-review ux-a11y-review \
+  ux-impeccable ux-jira ux-code-review; do
   have ".cursor/skills/$s/SKILL.md"
 done
+have docs/UX-PIPELINE.md
 
 echo "== 2. new_project.sh =="
 TMPAPP=$(mktemp -d)
@@ -43,9 +46,13 @@ RUN=$(ls -d projects/$SLUG/runs/*detect* 2>/dev/null | head -1)
 echo "== 4. Review gate fixtures =="
 if bash scripts/check_review_gate_fixtures.sh >/dev/null; then ok "fixtures"; else no "fixtures"; fi
 
-echo "== 5. Skills mention pilot safety =="
+echo "== 5. Skills mention pilot safety + pipeline =="
 grep -q "pilot" .cursor/skills/ux-phases/SKILL.md && ok "phases pilot" || no "phases pilot"
 grep -q "impeccable" .cursor/skills/ux-impeccable/SKILL.md && ok "impeccable skill" || no "impeccable skill"
+grep -qi "last" .cursor/skills/ux-impeccable/SKILL.md && ok "impeccable last" || no "impeccable last"
+grep -q "ux-architect" .cursor/skills/ux-loop/SKILL.md && ok "loop architect" || no "loop architect"
+grep -q "1440" .cursor/skills/ux-browser-review/SKILL.md && ok "browser viewports" || no "browser viewports"
+grep -q "DESIGN.md" docs/UX-PIPELINE.md && ok "pipeline DESIGN.md" || no "pipeline DESIGN.md"
 
 echo "== 6. UX pass Teams notify (offline) =="
 have "scripts/ux_pass_notify.py"

@@ -36,6 +36,18 @@ impeccable:
     - overdrive
     - delight
 
+# Product design language lives in the app repo (required).
+design:
+  doc: DESIGN.md
+  # Optional ticket-scoped charter path (e.g. docs/UX-CHARTER.md). DESIGN.md wins on conflict
+  # unless Mode B explicitly supersedes and updates DESIGN.md on implement.
+  charter_doc: ""
+
+# Tracker for UX_CHARTER_READY comments (align with dev-agent projects/<slug>/project.yaml).
+tracker:
+  # provider: jira | github_issues
+  provider: jira
+
 jira:
   enabled: false
   # Set epic_key in the live projects/<slug>/project.yaml (not in engine docs).
@@ -47,3 +59,8 @@ jira:
 
 report:
   app_name: "<App>"
+
+# Browser review targets (ux-browser-review)
+browser_review:
+  required_for_redesign: true
+  viewports: [1440, 1024, 768, 390]
