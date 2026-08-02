@@ -2,7 +2,7 @@
 
 Impeccable alone is anti-slop polish — not a senior product designer. Athena runs a
 **staged pipeline**. Upstream repos are **references**; thin skills in this engine are
-the source of truth so LRM and Pantheon share one brain.
+the source of truth so every app slug shares one brain.
 
 ## Stack (order matters)
 
@@ -22,12 +22,9 @@ Optional later: bitjaru/styleseed scored gate; nexu-io/open-design for ref extra
 
 ## Dual projects
 
-Same engine skills; product language lives in each app:
+Same engine skills; product language lives in each app repo root as **`DESIGN.md`**.
 
-- LRM → `dashboard/lab-test-booking/DESIGN.md`
-- Pantheon → `DESIGN.md` (product language; ticket charters may live in `docs/UX-CHARTER.md`)
-
-Hephaestus kicks Athena via `dev-ux-subagent` for both `projects/lrm` and `projects/pantheon`.
+Hephaestus kicks Athena via `dev-ux-subagent` for each configured `projects/<slug>/`.
 
 ## Mode mapping
 
@@ -43,6 +40,5 @@ Mode A (needs-ux-pass):
 
 ## Failed directions
 
-If humans reject a shipped look (e.g. Pantheon Celestial Temple), mark it in app
-`DESIGN.md` as **not accepted** and require Mode B to propose **new** directions —
-do not polish the failed aesthetic.
+If humans reject a shipped look, mark it in app `DESIGN.md` as **not accepted** and
+require Mode B to propose **new** directions — do not polish the failed aesthetic.
