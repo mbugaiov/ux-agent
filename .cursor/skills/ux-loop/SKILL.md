@@ -41,7 +41,7 @@ Triggered by Hephaestus skill `dev-ux-subagent` **after** feature implement
 
 Triggered by:
 
-- Hephaestus when Jira has **`ux-charter-first`** and no **`UX_CHARTER_READY`** yet
+- Hephaestus when the tracker has **`ux-charter-first`** and no **`UX_CHARTER_READY`** yet
   (`should_kick_ux.ts --when before-implement`), **or**
 - Human asks for a charter / pilot.
 
@@ -53,11 +53,14 @@ Steps:
    `projects/<slug>/runs/<date>-<KEY>-…/run.md` (+ optional `ia.md`).
 3. Stay on Hephaestus feature branch when kicked mid-ticket; use `app.pilot_branch` only
    when the user explicitly wants a UX pilot outside factory.
-4. **Must** post a Jira comment containing the exact sentinel **`UX_CHARTER_READY`**
-   (plus short IA summary). Keep `ux-charter-first`; do not strip `impl-dev`.
+4. **Must** post a tracker comment containing the exact sentinel **`UX_CHARTER_READY`**
+   (plus short IA summary):
+   - **Jira:** issue comment (ADF/plain per project tooling)
+   - **GitHub Issues** (`tracker.provider=github_issues`): `gh issue comment <N> -R <owner>/<repo> --body "… UX_CHARTER_READY …"`
+   Keep `ux-charter-first`; do not strip `impl-dev`.
 5. Return `run.md` path to Hephaestus so implement can proceed.
 
-Labels / handoff details: skill `ux-jira`.
+Labels / handoff details: skill `ux-jira` (covers Jira + GitHub Issues label protocol).
 
 ## Optional backlog probe
 
