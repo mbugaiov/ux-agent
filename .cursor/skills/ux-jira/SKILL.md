@@ -1,12 +1,14 @@
 ---
 name: ux-jira
-description: File or update Jira UX findings from Athena runs. Use when creating impl-ux tickets or handing off to impl-dev.
+description: File or update UX findings on Jira or GitHub Issues from Athena runs. Use when creating impl-ux tickets, posting UX_CHARTER_READY, or handing off to impl-dev.
 ---
 
-# UX Jira
+# UX tracker (Jira / GitHub Issues)
 
-Read `projects/<slug>/project.yaml` → `jira` first. If `jira.enabled` is false, skip filing
-unless the user asks to enable tracking.
+Read `projects/<slug>/project.yaml` → `tracker.provider` (default `jira`) and `jira`.
+
+- **`jira`:** If `jira.enabled` is false, skip Jira filing unless the user asks to enable it.
+- **`github_issues`:** Use `gh issue` / labels on `git.workspace`/`git.repo` (or `tracker.owner`/`tracker.repo`). No Jira. Post charter/polish notes with `gh issue comment`.
 
 ## Epic
 
