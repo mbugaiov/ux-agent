@@ -28,6 +28,19 @@ for s in ux-runs ux-phases ux-loop ux-architect ux-visual-direction \
   have ".cursor/skills/$s/SKILL.md"
 done
 have docs/UX-PIPELINE.md
+have docs/UPSTREAM-SKILLS.md
+have skills-lock.json
+have .agents/skills/ui-ux-pro-max/SKILL.md
+have .agents/skills/ui-ux-pro-max/scripts/search.py
+have .agents/skills/design-brief/SKILL.md
+have .agents/skills/ss-score/SKILL.md
+have .agents/skills/design-md/SKILL.md
+have .agents/skills/cognitive-accessibility/SKILL.md
+UP_COUNT=$(find .agents/skills -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' ')
+[[ "$UP_COUNT" -ge 120 ]] && ok "upstream skill dirs (>=120, got $UP_COUNT)" || no "upstream skill dirs (>=120, got $UP_COUNT)"
+grep -q "ui-ux-pro-max" .cursor/skills/ux-visual-direction/SKILL.md && ok "visual mandates pro-max" || no "visual mandates pro-max"
+grep -q "designer-skills\|.agents/skills" .cursor/skills/ux-architect/SKILL.md && ok "architect mandates designer-skills" || no "architect mandates designer-skills"
+grep -qi "No MCP\|not used.*MCP\|MCP is \*\*not\*\*" .cursor/skills/ux-visual-direction/SKILL.md docs/UPSTREAM-SKILLS.md && ok "no Pro Max MCP" || no "no Pro Max MCP"
 
 echo "== 2. new_project.sh =="
 TMPAPP=$(mktemp -d)

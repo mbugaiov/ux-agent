@@ -31,11 +31,12 @@ Triggered **after** feature implement (`needs-ux-pass` / `impl-ux` / UI surfaces
 2. Context: ticket surfaces + app **`DESIGN.md`** (+ `lib/ui.ts` when present).
 3. **`ux-browser-review`** — screenshots at 1440 / 1024 / 768 / 390 (or documented skip).
 4. **`ux-ui-rules-review`** — Critical / Major / Minor; fix Critical.
-5. **`ux-a11y-review`** — separate pass; fix blockers.
-6. **`ux-impeccable` last** — `audit` / `polish` / `harden` / `critique` only
+5. StyleSeed **`ss-score` / `ss-review` / `ss-verify`** when a DESIGN/StyleSeed lock exists.
+6. **`ux-a11y-review`** — vendored accessibility-agents + checklist; fix blockers.
+7. **`ux-impeccable` last** — `audit` / `polish` / `harden` / `critique` only
    (avoid `craft` / `overdrive` / `delight` on mature UIs).
-7. Commit UX fixes on this branch; return file list + screenshot paths to Hephaestus.
-8. Hephaestus continues gate → MR.
+8. Commit UX fixes on this branch; return file list + screenshot paths to Hephaestus.
+9. Hephaestus continues gate → MR.
 
 ## Mode B — Charter (design-first)
 
@@ -44,10 +45,11 @@ Triggered by `ux-charter-first` without `UX_CHARTER_READY`, or human charter ask
 0. `ux_pass_notify.py --mode charter` unless Hephaestus already notified.
 1. Read `projects/<slug>/project.yaml` + `project-memory.md` + app **`DESIGN.md`**.
    If DESIGN.md marks a prior direction **failed / not accepted**, do not refine it.
-2. **`ux-architect`** — goals, flows, IA, states, responsive intent → `run.md` / `ia.md`.
-3. **`ux-visual-direction`** — only after architect; score 2–3 options when redesigning;
-   lock one into the charter. Use Pro Max if installed; never override an **accepted** DESIGN.md
-   without explicit ticket scope to supersede it.
+2. **`ux-architect`** — load vendored **designer-skills** as needed; goals, flows, IA,
+   states, responsive intent → `run.md` / `ia.md`.
+3. **`ux-visual-direction`** — only after architect; **must** run vendored `ui-ux-pro-max`
+   search on redesign; StyleSeed lock recommended; never override an **accepted** DESIGN.md
+   without explicit ticket scope to supersede it. No Pro Max MCP.
 4. Prefer **no product UI commits** in Mode B — IA / wire / freeze in
    `projects/<slug>/runs/<date>-<KEY>-…/`.
 5. **`ux-browser-review`** baseline of current UI (STG or local) for first-viewport redesigns;
