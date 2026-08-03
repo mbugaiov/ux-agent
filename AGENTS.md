@@ -11,10 +11,10 @@ implementation MRs when code changes are required.
 > prefix. Presentation: *Athena · UX*. Teams Adaptive Cards use title colour **`Good`**
 > (Hephaestus=`Accent`, Argus=`Warning`) — keep the three colours distinct (RQ-1957).
 
-> **Pipeline:** see **`docs/UX-PIPELINE.md`**. Impeccable
-> ([pbakaus/impeccable](https://github.com/pbakaus/impeccable)) is the **final** polish spine,
-> not the whole designer. Upstream process/visual/review repos are referenced from thin skills —
-> do not dump competing full skill packs into every prompt.
+> **Pipeline:** see **`docs/UX-PIPELINE.md`** and **`docs/UPSTREAM-SKILLS.md`**.
+> Vendored packs live in `.agents/skills/` (designer-skills, ui-ux-pro-max, StyleSeed,
+> selective open-design, accessibility-agents). Orchestrators in `.cursor/skills/ux-*`
+> own **order**. Impeccable is **final** polish — not the whole designer. No Pro Max MCP.
 
 > Operating role: follow `.cursor/rules/ux-engine.mdc`. First-time setup: **`SETUP.md`**.
 > Engine vs projects: **`PORTABILITY.md`**.

@@ -1,24 +1,25 @@
 # Athena UX pipeline (upgraded)
 
 Impeccable alone is anti-slop polish — not a senior product designer. Athena runs a
-**staged pipeline**. Upstream repos are **references**; thin skills in this engine are
-the source of truth so every app slug shares one brain.
+**staged pipeline**. Upstream skill packs are **vendored** under `.agents/skills/`
+(see `docs/UPSTREAM-SKILLS.md`). Thin `.cursor/skills/ux-*` orchestrators are the
+control plane so every app slug shares one brain and one order.
 
 ## Stack (order matters)
 
-| Step | Skill | Upstream inspiration | Role |
-|------|-------|----------------------|------|
-| 1 | `ux-architect` | owl-listener/designer-skills | Goals, flows, IA, states, responsive |
-| 2 | Product lock | app `DESIGN.md` (+ styleseed idea) | Tokens / principles per product |
-| 3 | `ux-visual-direction` | nextlevelbuilder/ui-ux-pro-max-skill | Direction, type, palette, charts |
+| Step | Orchestrator | Upstream (vendored) | Role |
+|------|--------------|---------------------|------|
+| 1 | `ux-architect` | **designer-skills** (full) | Goals, flows, IA, states, responsive, critique |
+| 2 | Product lock | app `DESIGN.md` + open-design `design-md` / `gpt-taste` / `brand-extract` / `reference-design-contract` | Tokens / principles; extract from refs when needed |
+| 3 | `ux-visual-direction` | **`ui-ux-pro-max`** (mandatory search) | Direction, type, palette, charts, stack fit |
+| 3b | (consistency) | **StyleSeed** `ss-*` | Cross-screen lock + score; merge into `DESIGN.md` |
 | 4 | Implement | Hephaestus (+ Athena pilot only if asked) | Working UI |
-| 5 | `ux-browser-review` | Playwright MCP | 1440 / 1024 / 768 / 390 screenshots |
-| 6 | `ux-ui-rules-review` | gsd-build/gsd-2 userinterface-wiki | Critical / Major / Minor |
-| 7 | `ux-a11y-review` | Community-Access/accessibility-agents | Keyboard, focus, contrast, names |
+| 5 | `ux-browser-review` | Playwright MCP / CLI | 1440 / 1024 / 768 / 390 screenshots |
+| 6 | `ux-ui-rules-review` | Engine checklist (GSD wiki not installable as skill) | Critical / Major / Minor |
+| 7 | `ux-a11y-review` | accessibility-agents (4 web skills) | Keyboard, focus, contrast, names, cognitive |
 | 8 | `ux-impeccable` | pbakaus/impeccable | **Last** anti-slop polish + detect |
 
-Optional later: bitjaru/styleseed scored gate; nexu-io/open-design for ref extraction into
-`DESIGN.md`.
+**Not used:** Pro Max MCP; open-design marketing/video packs; gsd-orchestrator.
 
 ## Dual projects
 
@@ -30,12 +31,15 @@ Hephaestus kicks Athena via `dev-ux-subagent` for each configured `projects/<slu
 
 ```
 Mode B (ux-charter-first):
-  architect → DESIGN.md check → visual direction → (browser baseline) → UX_CHARTER_READY
+  architect (designer-skills) → DESIGN.md (+ open-design extract if needed)
+  → visual direction (ui-ux-pro-max mandatory) → StyleSeed lock
+  → (browser baseline) → UX_CHARTER_READY
   → Hephaestus implement
   → Mode A
 
 Mode A (needs-ux-pass):
-  context → browser review → UI rules → a11y → Impeccable polish → return to Hephaestus
+  context → browser review → UI rules → StyleSeed score (if lock exists)
+  → a11y (upstream + orchestrator) → Impeccable polish → return to Hephaestus
 ```
 
 ## Failed directions

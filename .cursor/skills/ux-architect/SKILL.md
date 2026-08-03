@@ -1,21 +1,32 @@
 ---
 name: ux-architect
-description: Product UX thinking before visuals — goals, flows, IA, interaction states, responsive behaviour, edge cases. Use for Athena Mode B charter and any redesign; do not skip before choosing a look.
+description: Product UX thinking before visuals — loads vendored designer-skills. Use for Athena Mode B charter and any redesign; do not skip before choosing a look.
 ---
 
 # UX Architect (Mode B spine)
 
-Inspired by process repos such as [owl-listener/designer-skills](https://github.com/owl-listener/designer-skills)
-(research → product → IA → interaction → critique). **Do not vendor the whole repo.**
-Use this skill as the mandatory thinking pass; optionally pull a single upstream skill
-if the host has installed it via `npx skills add`.
+**Upstream is installed** in this engine: `.agents/skills/` from
+[Owl-Listener/designer-skills](https://github.com/Owl-Listener/designer-skills) (full pack).
+See `docs/UPSTREAM-SKILLS.md`. Do **not** treat this orchestrator as a substitute for those skills.
 
 ## When
 
 - Mode B (`ux-charter-first`) — **required before** visual direction
 - Mode A polish — only when hierarchy / flow is broken (not for colour tweaks)
 
-## Required output (write into `run.md` + optional `ia.md`)
+## Mandatory process
+
+1. Read app **`DESIGN.md`** (and ticket `docs/UX-CHARTER.md` if present).
+2. **Load upstream skills as needed** (Read their `SKILL.md` under `.agents/skills/<name>/`):
+   - Framing: `design-brief`, `jobs-to-be-done`, `user-persona` / `empathy-map` when research exists
+   - Flow / IA: `journey-map`, `content-strategy`, and any IA / navigation skills present
+   - Interaction: interaction-design skills for states, forms, navigation, feedback
+   - UI structure (not visual brand yet): layout / responsive / data-viz skills as needed
+   - Before freeze: at least one `critique-*` skill (hierarchy, affordance, or density)
+3. Write required outputs below into `run.md` + optional `ia.md`.
+4. **No palette / font / “look” decisions here** — that is `ux-visual-direction` + `ui-ux-pro-max`.
+
+## Required output
 
 ### 1. Product framing
 
@@ -49,9 +60,14 @@ Document behaviour at **1440 / 1024 / 768 / 390** for critical actions and statu
 
 Routes, `data-testid`s, APIs, brand assets that must not change unless ticket owns them.
 
+### 7. Upstream audit trail
+
+List which `.agents/skills/<name>` files you actually used (for run.md).
+
 ## Hard rules
 
-- **No visual direction yet** — no palette, font pairing, or “temple/neon/glass” choices here.
 - Prefer preserving product patterns unless usability failure is documented.
 - Never remove functionality to “make it cleaner.”
 - Never hide critical status or primary actions behind hover.
+- Research-only skills (diary studies, survey design) — use when ticket has research inputs;
+  do not invent fake interview data.

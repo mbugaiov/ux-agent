@@ -16,6 +16,15 @@ cd /path/to/ux-agent
 bash tests/run_tests.sh
 ```
 
+Upstream design skills are **vendored** in `.agents/skills/` (`skills-lock.json`).
+Inventory + skip list: `docs/UPSTREAM-SKILLS.md`. No Pro Max MCP.
+
+```bash
+# Restore after clone (if needed)
+npx skills experimental_install
+# Or re-add packs listed in docs/UPSTREAM-SKILLS.md with: -a cursor -y --copy
+```
+
 ## 2. Create project
 
 ```bash
