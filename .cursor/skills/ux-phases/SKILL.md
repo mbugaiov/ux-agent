@@ -11,11 +11,15 @@ Canonical order (see `docs/UX-PIPELINE.md`):
 2. **Context** — App **`DESIGN.md`** (required). Optional `PRODUCT.md`, `docs/UX-CHARTER.md`
    (ticket lock). Note failed/interim directions.
 3. **Architect** — `ux-architect` + vendored **designer-skills** (Mode B required).
-4. **Visual direction** — `ux-visual-direction` + mandatory **`ui-ux-pro-max`** search;
-   StyleSeed lock; open-design extract skills when superseding `DESIGN.md`.
-5. **Scope** — 1–2 surfaces; record in `run.md`.
-6. **Implement** — Hephaestus owns feature UI; Athena commits polish only on the shared
-   feature branch (or `pilot_branch` if human-only pilot).
+4. **Visual direction** — `ux-visual-direction` + **`ui-ux-pro-max`** when direction is
+   **open**; StyleSeed lock; open-design extract when superseding `DESIGN.md`.
+4b. **Pencil** — skill `ux-pencil` when DESIGN.md / ticket requires screen compositions:
+   complete locked board (automatic) or explore → **human pick** if direction open.
+   **Commit + push** `.pen` on the feature branch. Do **not** post `UX_CHARTER_READY`
+   until required frames exist **in git**.
+5. **Scope** — surfaces + Pencil screen inventory; record in `run.md`.
+6. **Implement** — Hephaestus owns feature UI from charter + **committed** Pencil frames;
+   Athena commits polish only on the shared feature branch (or `pilot_branch` if human-only pilot).
 7. **Browser review** — skill `ux-browser-review` (four viewports → `runs/…/screenshots/`).
 8. **UI rules review** — skill `ux-ui-rules-review`.
 9. **StyleSeed score** — `ss-score` / `ss-verify` when lock exists.

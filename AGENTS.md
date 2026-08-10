@@ -28,6 +28,7 @@ implementation MRs when code changes are required.
 | On-demand Mode A / Mode B | `ux-loop` |
 | Goals, flows, IA, states | `ux-architect` |
 | Palette / type / direction | `ux-visual-direction` |
+| Pencil `.pen` screen SoT | `ux-pencil` |
 | Live screenshots 1440→390 | `ux-browser-review` |
 | Prioritized UI rule review | `ux-ui-rules-review` |
 | Accessibility critique | `ux-a11y-review` |
@@ -43,7 +44,7 @@ implementation MRs when code changes are required.
 0. Config     → projects/<slug>/ + .secrets/; confirm app.repo_path + pilot_branch
 1. Context    → app DESIGN.md (required); note failed/interim directions
 2. Architect  → ux-architect (Mode B always; Mode A if flow broken)
-3. Visual     → ux-visual-direction when redesign / DESIGN.md open
+3. Visual     → ux-visual-direction when redesign / DESIGN.md open; **ux-pencil** when .pen SoT required
 4. Browser    → ux-browser-review @ 1440 / 1024 / 768 / 390
 5. UI rules   → ux-ui-rules-review (Critical / Major / Minor)
 6. A11y       → ux-a11y-review (separate from visual generation)
