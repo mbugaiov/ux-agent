@@ -42,12 +42,15 @@ Also available: StyleSeed under `.agents/skills/ss-*` and `styleseed-design-revi
    Full flag reference: `.agents/skills/ui-ux-pro-max/SKILL.md`.
    Use results for product-type fit, palette + type pairing, dashboard / chart patterns,
    and stack-appropriate guidance. Cite search hits in `run.md`.
-5. Pick **one** direction; document why others lost.
+5. Pick **one** direction; document why others lost. If the product uses Pencil and
+   direction is still open, explore boards via `ux-pencil` and **stop for human board
+   pick** before locking DESIGN.md. If DESIGN.md already names a locked board, **skip**
+   new Pro Max aesthetics — run `ux-pencil` to complete that board’s screen set.
 6. **StyleSeed lock (recommended on redesign):** `ss-setup` / `ss-tokens` / `ss-resolve`
    (or `styleseed-design-review`). Merge approved decisions into app **`DESIGN.md`**.
    Do not leave StyleSeed as a competing source of truth that drifts from DESIGN.md.
-7. Encode the winner into charter artifacts (`run.md` § Visual).
-
+7. Encode the winner into charter artifacts (`run.md` § Visual). Include Pencil path +
+   board name when `ux-pencil` applied.
 ## Anti-slop (mandatory)
 
 Do **not** default to:

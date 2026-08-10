@@ -32,16 +32,26 @@ Hephaestus kicks Athena via `dev-ux-subagent` for each configured `projects/<slu
 ```
 Mode B (ux-charter-first):
   architect (designer-skills) → DESIGN.md (+ open-design extract if needed)
-  → visual direction (ui-ux-pro-max mandatory) → StyleSeed lock
+  → visual direction (ui-ux-pro-max when direction OPEN)
+  → Pencil screen set (ux-pencil) when DESIGN.md / ticket requires .pen compositions
+      — if direction open: explore boards → human picks one → lock DESIGN.md
+      — if direction locked: complete PRD screens in that board (no human pick)
+  → StyleSeed lock when used
   → (browser baseline) → UX_CHARTER_READY
-  → Hephaestus implement
+  → Hephaestus implement (match Pencil frames + DESIGN tokens)
   → Mode A
 
 Mode A (needs-ux-pass):
-  context → browser review → UI rules → StyleSeed score (if lock exists)
+  context → browser review (diff vs Pencil when .pen SoT exists)
+  → UI rules → StyleSeed score (if lock exists)
   → a11y (upstream + orchestrator) → Impeccable polish → return to Hephaestus
 ```
 
+## Pencil
+
+Skill: **`ux-pencil`**. Encrypted `.pen` files — Pencil MCP only (never Read/Grep).
+Human picks a board **only** when visual direction is open; locked boards are completed
+by Athena automatically on `ux-charter-first` tickets.
 ## Failed directions
 
 If humans reject a shipped look, mark it in app `DESIGN.md` as **not accepted** and
