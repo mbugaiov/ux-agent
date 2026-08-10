@@ -42,7 +42,11 @@ Operators do **not** manually drive Pencil mid-ticket once direction is locked.
    in that board’s tokens (login, MFA, home, report, search, detail, admin surfaces as scoped).
 6. Link frames in charter + `run.md` (board name, node ids, screenshot evidence).
 7. Update `docs/design/README.md` (or product equivalent) with screen inventory + status.
-8. Only then post tracker **`UX_CHARTER_READY`**.
+8. **Commit and push** the product `.pen` (and README inventory) on the **feature branch**
+   so Hephaestus / CI can read frames from git — local-only or unsaved canvas is a
+   **process failure**.
+9. Only then post tracker **`UX_CHARTER_READY`**. Do **not** file or kick `impl-dev` for
+   composition work that points at frame ids not yet on the remote branch.
 
 ## Hephaestus handoff
 
@@ -50,6 +54,7 @@ Charter must tell implement:
 
 - Pencil path + board name
 - Screen → route map + **frame ids**
+- Commit SHA / branch where `.pen` lives (must already be on remote)
 - “Match Pencil **composition** (structure, hierarchy, chrome) — not tokens alone”
 
 ## Acceptance bar (composition tickets)
@@ -61,6 +66,9 @@ layout (e.g. welcome-mat launchpad under Night Ops colors) is a **process failur
 ## Forbidden
 
 - `UX_CHARTER_READY` on a Pencil-required ticket with only token tables and no screen frames
+- `UX_CHARTER_READY` / `impl-dev` kick when required `.pen` frames exist only in the editor
+  and are **not committed + pushed** on the working branch
+- Filing an implement issue that cites Pencil frame ids not present in git
 - Re-running Pro Max / new aesthetic when DESIGN.md already locks a board — complete that board
 - Implementing UI from tokens only when the ticket required Pencil compositions
 - Closing composition tickets after a retint without frame-match evidence (screenshots)

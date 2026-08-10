@@ -36,9 +36,10 @@ Mode B (ux-charter-first):
   → Pencil screen set (ux-pencil) when DESIGN.md / ticket requires .pen compositions
       — if direction open: explore boards → human picks one → lock DESIGN.md
       — if direction locked: complete PRD screens in that board (no human pick)
+      — **commit + push** `.pen` (+ design README) on the feature branch
   → StyleSeed lock when used
   → (browser baseline) → UX_CHARTER_READY
-  → Hephaestus implement (match Pencil frames + DESIGN tokens)
+  → Hephaestus implement (match Pencil frames from **git** + DESIGN tokens)
   → Mode A
 
 Mode A (needs-ux-pass):
@@ -52,6 +53,10 @@ Mode A (needs-ux-pass):
 Skill: **`ux-pencil`**. Encrypted `.pen` files — Pencil MCP only (never Read/Grep).
 Human picks a board **only** when visual direction is open; locked boards are completed
 by Athena automatically on `ux-charter-first` tickets.
+
+**Git gate:** required frames MUST be on the remote feature branch before
+`UX_CHARTER_READY` and before any `impl-dev` kick that cites those frames. Editor-only
+or uncommitted `.pen` = process failure (Hephaestus cannot implement from chat memory).
 ## Failed directions
 
 If humans reject a shipped look, mark it in app `DESIGN.md` as **not accepted** and
