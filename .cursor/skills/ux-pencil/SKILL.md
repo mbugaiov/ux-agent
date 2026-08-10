@@ -49,11 +49,18 @@ Operators do **not** manually drive Pencil mid-ticket once direction is locked.
 Charter must tell implement:
 
 - Pencil path + board name
-- Screen → route map
-- “Match Pencil composition; tokens already in DESIGN.md”
+- Screen → route map + **frame ids**
+- “Match Pencil **composition** (structure, hierarchy, chrome) — not tokens alone”
+
+## Acceptance bar (composition tickets)
+
+Done **only** when live screens match Pencil frames for scoped routes (Home tiles/queue,
+Search field/rows, Auth panel, etc.). Changing CSS variables / fonts while keeping a prior
+layout (e.g. welcome-mat launchpad under Night Ops colors) is a **process failure**.
 
 ## Forbidden
 
 - `UX_CHARTER_READY` on a Pencil-required ticket with only token tables and no screen frames
 - Re-running Pro Max / new aesthetic when DESIGN.md already locks a board — complete that board
 - Implementing UI from tokens only when the ticket required Pencil compositions
+- Closing composition tickets after a retint without frame-match evidence (screenshots)
