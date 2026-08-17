@@ -102,5 +102,12 @@ assert out["reason"] == "not_configured" and mod.should_report_outcome(out) is F
 PY
 
 echo
+
+# Themis central review-rules wiring (must stay green with shared 10-tests-must-have)
+grep -q 'build_review_prompt.sh' .github/workflows/code-review.yml \
+  && grep -q 'repository: mbugaiov/themis-agent' .github/workflows/code-review.yml \
+  && ok "review (Themis) uses build_review_prompt central pack" \
+  || no "review workflow missing build_review_prompt wiring"
+
 echo "Result: $PASS passed, $FAIL failed"
 [[ "$FAIL" -eq 0 ]]
