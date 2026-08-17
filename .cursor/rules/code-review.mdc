@@ -18,10 +18,17 @@ The GitHub PR workflow (`.github/workflows/code-review.yml`) runs headless
 
 Read `AGENTS.md`, `PORTABILITY.md`, and `.cursor/rules/ux-engine.mdc`. Block on:
 
+## MUST-HAVE — tests (Themis shared)
+
+Behavior change (scripts/libs/skills/workflows/CLI/gates) without **new or updated**
+tests → **Blocking**. Align with `themis-agent/review-rules/ (via build_review_prompt.sh)`
+(CI also loads `.themis-agent/review-rules/ (via build_review_prompt.sh)`).
+
+
 1. **Live project data in git** — anything under `projects/` except `projects/_template/`
 2. **Project-specific leaks** — product slugs, private paths, real Jira keys in engine files
 3. **Secrets** — tokens, `.env`, credentials in the diff
-4. **Missing tests** — new script/skill/rule behavior without coverage in `tests/run_tests.sh`
+4. **Missing or stale tests (MUST-HAVE)** — new/changed script/skill/lib/rule behavior without **new or updated** coverage in `tests/run_tests.sh` / vitest (file-exists/`grep` smoke alone is not enough)
 5. **Portability** — hardcoded customer URLs, `/Users/...` paths in `scripts/`, `templates/`, `.cursor/`
 6. **STG safety** — any skill/doc that tells agents to merge UX work to `main` without pilot review
 7. **Correctness** — broken exit codes, missing `set -euo pipefail` on new bash scripts
