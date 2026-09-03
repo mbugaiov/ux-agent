@@ -27,6 +27,9 @@ Optional when `UX_FACTORY_TEAMS_WEBHOOK_URL` is set. Unset = quiet.
 
 Triggered **after** feature implement (`needs-ux-pass` / `impl-ux` / UI surfaces/diff):
 
+0. **Create run folder first** (Plutus Athena):  
+   `bash scripts/new_run.sh <slug> polish "<KEY-or-task>"`  
+   Work + screenshots land under that `runs/<date>-polish-…/` path.
 1. Stay on the **current app feature branch** (no `feat/ux-*` pilot).
 2. Context: ticket surfaces + app **`DESIGN.md`** (+ `lib/ui.ts` when present).
 3. **`ux-browser-review`** — screenshots at 1440 / 1024 / 768 / 390 (or documented skip).
@@ -43,6 +46,10 @@ Triggered **after** feature implement (`needs-ux-pass` / `impl-ux` / UI surfaces
 Triggered by `ux-charter-first` without `UX_CHARTER_READY`, or human charter ask.
 
 0. `ux_pass_notify.py --mode charter` unless Hephaestus already notified.
+0b. **Create run folder first** (Plutus Athena):  
+    `bash scripts/new_run.sh <slug> charter "<KEY-or-task>"`  
+    (or `redesign` when multi-step). Do **not** ship `UX_CHARTER_READY` with only
+    OpenSpec `ux-charter.md` and no dated `runs/` folder.
 1. Read `projects/<slug>/project.yaml` + `project-memory.md` + app **`DESIGN.md`**.
    If DESIGN.md marks a prior direction **failed / not accepted**, do not refine it.
 2. **`ux-architect`** — load vendored **designer-skills** as needed; goals, flows, IA,
@@ -51,7 +58,7 @@ Triggered by `ux-charter-first` without `UX_CHARTER_READY`, or human charter ask
    search on redesign; StyleSeed lock recommended; never override an **accepted** DESIGN.md
    without explicit ticket scope to supersede it. No Pro Max MCP.
 4. Prefer **no product UI commits** in Mode B — IA / wire / freeze in
-   `projects/<slug>/runs/<date>-<KEY>-…/`.
+   `projects/<slug>/runs/<date>-<KEY>-…/` (the folder from step 0b).
 5. **`ux-browser-review`** baseline of current UI (STG or local) for first-viewport redesigns;
    cite viewport risks in the charter comment.
 6. Stay on Hephaestus feature branch when kicked mid-ticket; `app.pilot_branch` only for
