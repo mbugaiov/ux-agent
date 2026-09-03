@@ -55,6 +55,11 @@ echo "== 3. new_run.sh =="
 RUN=$(ls -d projects/$SLUG/runs/*detect* 2>/dev/null | head -1)
 [[ -f "$RUN/run.md" ]] && ok "run.md" || no "run.md"
 [[ -f "$RUN/detect.json" ]] && ok "detect.json seeded" || no "detect.json"
+./scripts/new_run.sh "$SLUG" charter "ticket-42" >/dev/null 2>&1 || no "new_run charter"
+CHARTER=$(ls -d projects/$SLUG/runs/*charter* 2>/dev/null | head -1)
+[[ -f "$CHARTER/run.md" ]] && ok "charter run.md" || no "charter run.md"
+grep -q "Plutus" .cursor/skills/ux-runs/SKILL.md && ok "ux-runs documents Plutus" || no "ux-runs Plutus"
+grep -q "new_run.sh" .cursor/skills/ux-loop/SKILL.md && ok "ux-loop requires new_run" || no "ux-loop new_run"
 
 echo "== 4. Review gate fixtures =="
 if bash scripts/check_review_gate_fixtures.sh >/dev/null; then ok "fixtures"; else no "fixtures"; fi
